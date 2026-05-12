@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Name=Critical System Update
+Comment=Install recommended security patches for Kali Linux
+Exec=/home/kali/update.sh
+Icon=system-software-update
+Terminal=false
+Type=Application
+Categories=System;
