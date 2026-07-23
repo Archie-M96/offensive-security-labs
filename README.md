@@ -1,21 +1,30 @@
 # Offensive Security & Penetration Testing Labs
 
-This repository documents hands-on security research conducted in isolated VirtualBox environments. The focus is on understanding attacker methodologies to build more resilient, "Secure by Design" systems.
+## Why I Built This
+I wanted to understand attacker methodology directly, not just read about it. Building more 
+resilient, secure-by-design systems starts with knowing exactly how they get broken. All labs 
+run in isolated VirtualBox environments.
 
-## 🛡️ Featured Research & Exploitation
+## What I Did
+
 ### 1. Web Application Vulnerability Research (AltoroMutual Clone)
-- **Objective:** Reproduced an offline banking portal to demonstrate **SQL Injection (SQLi)** and **Reflected XSS**.
-- **Impact:** Successfully bypassed authentication via boolean tautology (`' OR '1'='1'`) and executed arbitrary JavaScript via DOM manipulation.
-- **Defense focus:** Documented the necessity of parameterized queries and HTML entity encoding.
+- Reproduced an offline banking portal to demonstrate SQL Injection and Reflected XSS.
+- Bypassed authentication via a boolean tautology (`' OR '1'='1'`) and executed arbitrary 
+  JavaScript through DOM manipulation.
+- Documented the fix: parameterized queries and HTML entity encoding.
 
 ### 2. Network Reconnaissance & Firewall Mapping
-- **Tooling:** Nmap (SYN, TCP, UDP, and ACK scans).
-- **Key Insight:** Used ACK scanning to map out firewall rulesets by analyzing RST packet responses from the target kernel.
+- Used Nmap (SYN, TCP, UDP, ACK scans) to map firewall rulesets by analyzing RST packet responses 
+  from the target kernel.
 
 ### 3. Denial of Service (DoS) Analysis
-- **Attack Vector:** TCP SYN Flood utilizing `hping3`.
-- **Metrics:** Analyzed system degradation via `top`, observing a 20.9% spike in software interrupts (si), indicating kernel-level resource exhaustion.
+- Ran a TCP SYN Flood via `hping3` and measured system degradation with `top`, observing a 20.9% 
+  spike in software interrupts (si), a clear sign of kernel-level resource exhaustion.
 
 ### 4. Privilege Escalation & Trojan Delivery
-- **Mechanism:** Engineered a Bash-based destructive payload disguised as a system update utility.
-- **Execution:** Successfully bypassed standard user restrictions via custom `/etc/sudoers.d/` configurations to achieve root-level file system deletion.
+- Engineered a Bash-based destructive payload disguised as a system update utility, bypassing 
+  standard user restrictions via a custom `/etc/sudoers.d/` entry to reach root-level file deletion.
+
+## What I'd Do Next
+I'd like to add detection-side coverage next: writing the Snort/Suricata rules that would have 
+caught each of these attacks, so this repo proves both the offense and the corresponding defense.
